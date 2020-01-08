@@ -39,7 +39,7 @@ steps:
   inputs:
     azureSubscription: 'DIG Service Principal'
     scriptLocation: inlineScript
-    inlineScript: 'az ml model register -n DemoModel -p sklearn_regression_model.pkl -t model.json'
+    inlineScript: 'az ml model register -n registeredmodel -p sklearn_regression_model.pkl -t model.json'
 
 - task: AzureCLI@1
   displayName: 'Deploy model'
