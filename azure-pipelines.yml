@@ -26,6 +26,14 @@ steps:
     azureSubscription: 'DIG Service Principal'
     scriptLocation: inlineScript
     inlineScript: 'az ml computetarget create amlcompute -n cpu --vm-size STANDARD_D2_V2 --max-nodes 4'
+
+
+- task: AzureCLI@1
+  displayName: 'Check aks'
+  inputs:
+    azureSubscription: 'DIG Service Principal'
+    scriptLocation: inlineScript
+    inlineScript: 'az aks show -n ml-ops-inference -g shared-research --query id'
   
 - task: AzureCLI@1
   displayName: 'Submit script run'
