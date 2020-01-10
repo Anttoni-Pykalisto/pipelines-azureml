@@ -33,7 +33,7 @@ steps:
   inputs:
     azureSubscription: 'DIG Service Principal'
     scriptLocation: inlineScript
-    inlineScript: 'az aks show -n ml-ops-inference -g shared-research --query id'
+    inlineScript: 'az aks show -n ml-ops-inferencefc503259 -g shared-research --query id'
   
 - task: AzureCLI@1
   displayName: 'Submit script run'
