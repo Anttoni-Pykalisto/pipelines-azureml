@@ -54,7 +54,7 @@ steps:
   inputs:
     azureSubscription: 'DIG Service Principal'
     scriptLocation: inlineScript
-    inlineScript: 'az ml model deploy -n demomodel -f model.json --ct ml-ops-inference --ic inferenceConfig.yml --dc aksDeploymentConfig.yml --overwrite'
+    inlineScript: 'az ml model deploy -n demomodel -f model.json --ct ml-ops-inferencefc503259 --ic inferenceConfig.yml --dc aksDeploymentConfig.yml --overwrite'
 
 # - task: AzureCLI@1
 #   displayName: 'Delete deployed service'
