@@ -20,13 +20,13 @@ steps:
     scriptLocation: inlineScript
     inlineScript: 'az ml folder attach -w machine-learning-playground -g shared-research'
 
-- task: AzureCLI@1
-  displayName: 'Create compute for training'
-  inputs:
-    azureSubscription: 'DIG Service Principal'
-    scriptLocation: inlineScript
-    inlineScript: |
-        az ml computetarget create amlcompute -n cpu --vm-size STANDARD_D2_V2 --max-nodes 4
+# - task: AzureCLI@1
+#   displayName: 'Create compute for training'
+#   inputs:
+#     azureSubscription: 'DIG Service Principal'
+#     scriptLocation: inlineScript
+#     inlineScript: |
+#         az ml computetarget create amlcompute -n cpu --vm-size STANDARD_D2_V2 --max-nodes 4
   
 # - task: AzureCLI@1
 #   displayName: 'Submit script run'
