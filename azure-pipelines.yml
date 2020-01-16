@@ -27,14 +27,6 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
         az ml computetarget create amlcompute -n cpu --vm-size STANDARD_D2_V2 --max-nodes 4
-        az ml computetarget attach aks -n ml-ops-inference -i /subscriptions/46eb26ad-8b8e-4170-bceb-07a3fbc2bf6a/resourcegroups/shared-research/providers/Microsoft.ContainerService/managedClusters/ml-ops-inferencefc503259 -g shared-research -w machine-learning-playground
-
-- task: AzureCLI@1
-  displayName: 'Check aks'
-  inputs:
-    azureSubscription: 'DIG Service Principal'
-    scriptLocation: inlineScript
-    inlineScript: 'az ml computetarget list'
   
 - task: AzureCLI@1
   displayName: 'Submit script run'
@@ -55,7 +47,7 @@ steps:
   inputs:
     azureSubscription: 'DIG Service Principal'
     scriptLocation: inlineScript
-    inlineScript: 'az ml model deploy -n demomodel -f model.json --ct ml-ops-inferencefc503259 --ic inferenceConfig.yml --dc aksDeploymentConfig.yml --overwrite'
+    inlineScript: 'az ml model deploy -n demomodel -f model.json --ic inferenceconfig.json --dc deploymentconfig.json --overwrite'
 
 # - task: AzureCLI@1
 #   displayName: 'Delete deployed service'
