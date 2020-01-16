@@ -28,26 +28,26 @@ steps:
     inlineScript: |
         az ml computetarget create amlcompute -n cpu --vm-size STANDARD_D2_V2 --max-nodes 4
   
-- task: AzureCLI@1
-  displayName: 'Submit script run'
-  inputs:
-    azureSubscription: 'DIG Service Principal'
-    scriptLocation: inlineScript
-    inlineScript: 'az ml run submit-script -c sklearn -e test -d myenv.yml train.py'
+# - task: AzureCLI@1
+#   displayName: 'Submit script run'
+#   inputs:
+#     azureSubscription: 'DIG Service Principal'
+#     scriptLocation: inlineScript
+#     inlineScript: 'az ml run submit-script -c sklearn -e test -d myenv.yml train.py'
 
-- task: AzureCLI@1
-  displayName: 'Register model'
-  inputs:
-    azureSubscription: 'DIG Service Principal'
-    scriptLocation: inlineScript
-    inlineScript: 'az ml model register -n registeredmodel -p sklearn_regression_model.pkl -t model.json'
+# - task: AzureCLI@1
+#   displayName: 'Register model'
+#   inputs:
+#     azureSubscription: 'DIG Service Principal'
+#     scriptLocation: inlineScript
+#     inlineScript: 'az ml model register -n registeredmodel -p sklearn_regression_model.pkl -t model.json'
 
 - task: AzureCLI@1
   displayName: 'Deploy model'
   inputs:
     azureSubscription: 'DIG Service Principal'
     scriptLocation: inlineScript
-    inlineScript: 'az ml model deploy -n demomodel -f model.json --ic inferenceconfig.json --dc deploymentconfig.json --overwrite'
+    inlineScript: 'az ml model deploy -n demomodel -m registeredmodel:7 --ic inferenceconfig.json --dc deploymentconfig.json --overwrite'
 
 # - task: AzureCLI@1
 #   displayName: 'Delete deployed service'
